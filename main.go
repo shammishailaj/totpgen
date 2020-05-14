@@ -1,10 +1,21 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/xlzd/gotp"
+	"log"
 )
 
 func main() {
-	fmt.Println("Current OTP is", gotp.NewDefaultTOTP("4S62BZNFXXSZLCRO").Now())
+	totpSecretkey := flag.String("k", "", "Secret key for TOTP")
+	flag.Parse()
+
+	if *totpSecretkey == "" {
+		log.Printf("Must provide secret key to generate TOTP\n\n")
+		flag.Usage()
+		fmt.Println("")
+	} else {
+		fmt.Printf("\nCurrent OTP is %s\n", gotp.NewDefaultTOTP(*totpSecretkey).Now())
+	}
 }
