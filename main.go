@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/xlzd/gotp"
+	"github.com/shammishailaj/gotp"
 	"log"
 )
 
